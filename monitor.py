@@ -8,14 +8,13 @@ from rpi_lcd import LCD
 def get_request(url):
     try:
         response = requests.get(url, timeout=5)
-        if response.status_code == 200:
-            return response
-        else:
-            return f"ERR:{response.status_code}"
+        if response.status_code != 200:
+            response = f"ERR:{response.status_code}"
     except requests.exceptions.ConnectionError:
-        return "ERROR"
+        response = "CON ERR"
     except requests.exceptions.ReadTimeout:
-        return "TIMEOUT"
+        response = "TIMEOUT"
+    return response
 
 i2c = board.I2C()
 sensor = HTU21D(i2c)
