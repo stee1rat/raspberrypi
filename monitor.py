@@ -29,8 +29,8 @@ while True:
             weather = weather.text.replace("°","")
         USD = get_request("https://rub.rate.sx/1USD")
         if isinstance(USD, requests.models.Response):
-            USD = f"{float(USD.text):.2f}"
+            USD = f"U:{float(USD.text):.2f}"
         last_updated = time.time()
     lcd.text(f"T:{sensor.temperature:.1f}C {weather}",  1)
-    lcd.text(f"H:{sensor.relative_humidity:.1f}% U:{USD}", 2)
+    lcd.text(f"H:{sensor.relative_humidity:.1f}% {USD}", 2)
     time.sleep(10)
