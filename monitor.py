@@ -5,6 +5,7 @@ import time
 from adafruit_htu21d import HTU21D
 from rpi_lcd import LCD
 
+
 def get_request(url):
     try:
         response = requests.get(url, timeout=5)
@@ -21,12 +22,11 @@ sensor = HTU21D(i2c)
 lcd = LCD(bus=3)
 
 last_updated = time.time() - 800
-
 while True:
     if time.time() - last_updated > 600:
         weather = get_request("http://wttr.in/Moscow?format=%x+%t")
         if isinstance(weather, requests.models.Response):
-            weather = weather.text.replace("°","")
+            weather = weather.text.replace("°", "")
         USD = get_request("https://rub.rate.sx/1USD")
         if isinstance(USD, requests.models.Response):
             USD = f"U:{float(USD.text):.2f}"

@@ -1,0 +1,7 @@
+Adafruit-GPIO==1.0.3
+Adafruit-PureIO==1.1.9
+Adafruit-SSD1306==1.6.2
+pep8==1.7.1
+Pillow==9.1.1
+RPi.GPIO==0.7.1
+spidev==3.5
